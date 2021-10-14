@@ -36,6 +36,7 @@ btn.addEventListener("click",(e) =>{
             return display.textContent = result.error
         }
         display.textContent = "login successfully"
+        window.location.href = "./rules.html"
     } ).catch((e) => console.log(e))
 
 })
