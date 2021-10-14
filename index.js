@@ -6,11 +6,11 @@ const btn = document.querySelector(".btn")
 const form = document.querySelector("#form")
 const display = document.querySelector(".display")
 
-let emailReg = /^([a-z0-9\.-]+)@(gmail).(com)$/;
-let pwdReg = /^([a-zA-Z0-9]{7})([\!@$%^&#*]{1})$/;
+let emailReg = /^([a-z0-9\.-]+)@(reqres).(in)$/;
+let pwdReg = /^([a-z]+)$/;
 
-let emailError = "Invalid email. It must contain the @gmail.com character"
-let pwdError = "Invalid password. It must contain 8 characters and a special symbol"
+let emailError = "Invalid email. It must contain the @reqres.in character"
+let pwdError = "Invalid password. It must contain just letters"
 
 
 btn.addEventListener("click",(e) =>{
@@ -33,6 +33,7 @@ btn.addEventListener("click",(e) =>{
     .then(result =>{
         console.log()
         if(result.error){
+            e.preventDefault()
             return display.textContent = result.error
         }
         display.textContent = "login successfully"
