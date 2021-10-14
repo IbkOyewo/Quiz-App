@@ -6,5 +6,38 @@
 body{
     margin: 0;
     padding: 0;
+    background: #7323A7;
+    color: #fff;
+    /* background-image:linear-gradient(to bottom, rgba(253, 243, 243, 0.52), #7323A7),
+    url('background.jpg');
+    background-size: contain; */
+ 
 }
-
+h1{
+    font-size: 55px;
+}
+.container{
+    max-width: 768px;
+    margin: 0 auto;
+}
+section .login {
+    margin-top: 50px;
+}
+.login button{
+    background-color:#fff;
+    color: #7323A7;
+}
+.login button:hover{
+    background-color: #e3c8f5;
+    color: #7323A7;
+}
+.image img{
+    width: 350px;
+}
+/* .invalid{
+    border-color: red;
+} */
+.email-error,.pwd-error{
+    color: rgb(245 112 112);
+    font-size: 12px;
+}
