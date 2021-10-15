@@ -31,14 +31,15 @@ btn.addEventListener("click",(e) =>{
     })
     .then(response => response.json())
     .then(result =>{
-        console.log()
+        if(!result.error){
+            alert("Login successful. Welcome to Quizzard App 😎")
+            window.location.href = "index.html"
+        }
         if(result.error){
             e.preventDefault()
             alert(result.error)
-            // return display.textContent = result.error
         }
-        alert("Login successful. Welcome to Quiz-land 😎")
-        window.location.href = "index.html"
+        
     } ).catch((e) => console.log(e))
 
 })
@@ -46,7 +47,7 @@ const emailValidation = (e) =>{
     let emailVal = emailInput.value;
     if (emailReg.test(emailVal)){
         email_error.innerHTML = ""
-        return emailVal
+       return emailVal
     } 
     else{
         email_error.innerHTML = emailError

@@ -14,7 +14,7 @@ let questions = [
   {
   numb: 2,
   question: "What is computer coding?",
-  answer: "Coding tells a computer what to do",
+  answer: "Coding tells a computer what to do.",
   options: [
     "Coding tells a computer what to do.",
     "Coding is not a list of functions.",
