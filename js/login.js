@@ -8,6 +8,7 @@ const display = document.querySelector(".display")
 
 let emailReg = /^([a-z0-9\.-]+)@(reqres).(in)$/;
 let pwdReg = /^([a-z]+)$/;
+// let pwdReg = "pistol"
 
 let emailError = "Invalid email. It must contain the @reqres.in character"
 let pwdError = "Invalid password. It must contain just letters"
@@ -17,30 +18,43 @@ btn.addEventListener("click",(e) =>{
     e.preventDefault();
 
     const url = "https://reqres.in/api/login";
-    
-    fetch(url,{
-        method : "POST",
-        headers : {
-            Accept:"application/json,text/plain",
-            "Content-Type":"application/json",
-        },
-        body : JSON.stringify({
-            email: emailInput.value,
-            password: password.value
-        })
+   
+    axios.post(url, {
+        email: emailInput.value,
+        password: password.value
     })
-    .then(response => response.json())
-    .then(result =>{
-        if(!result.error){
-            alert("Login successful. Welcome to Quizzard App 😎")
-            window.location.href = "index.html"
-        }
-        if(result.error){
-            e.preventDefault()
-            alert(result.error)
-        }
+    .then(function (response) {
+        window.location.href="./index.html"
+        console.log(response);
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+    // fetch(url,{
+    //     method : "POST",
+    //     headers : {
+    //         Accept:"application/json,text/plain",
+    //         "Content-Type":"application/json",
+    //     },
+    //     body : JSON.stringify({
+    //         email: emailInput.value,
+    //         password: password.value
+    //     })
+    // })
+    // .then(response => response.json())
+    // .then(result =>{
+    //     if(!result.error){
+            
+    //         console.log("Login successful. Welcome to Quizzard App 😎")
+    //         window.location.href = "index.html"
+    //     }
+    //     if(result.error){
+    //         e.preventDefault()
+    //         console.log(result.error)
+    //     }
         
-    } ).catch((e) => console.log(e))
+    // } ).catch((e) => console.log(e))
 
 })
 const emailValidation = (e) =>{
@@ -62,7 +76,7 @@ const pwdValidation = (e) =>{
     if (pwdReg.test(pwdVal)){
         pwd_error.innerHTML = ""
         return pwdVal
-    } 
+    }  
     else{
         pwd_error.innerHTML = pwdError
         e.preventDefault()

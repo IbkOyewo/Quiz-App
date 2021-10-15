@@ -1,3 +1,5 @@
+//import { questions } from "./questions.js";
+
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
 const exit_btn = document.querySelector(".buttons .quit");
@@ -8,7 +10,7 @@ const option_list = document.querySelector(".option_list");
 
 
 start_btn.onclick = ()=>{
-    info_box.classList.add("activeInfo"); //show info box
+    info_box.classList.add("activeInfo"); 
 }
 
 
@@ -66,20 +68,33 @@ next_btn.onclick = ()=>{
 
 function showQuestions(index){
     const que_text = document.querySelector(".que_text");
-
-   
-    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-    que_text.innerHTML = que_tag; 
-    option_list.innerHTML = option_tag; 
     
+    let list = questions[index].options;
+    //console.log(list,list.length)
+    let option_tag = ""
+   for(let opt = 0; opt < list.length ;opt++){
+       //console.log(list[opt])
+       option_tag += '<div class="option"><span>'+ list[opt] +'</span></div>';
+       console.log(option_tag)
+       let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+       que_text.innerHTML = que_tag; 
+       
+}
+    option_list.innerHTML = option_tag; 
     const option = option_list.querySelectorAll(".option");
+
+    // let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
+    // + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
+    // + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+    // + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+    // que_text.innerHTML = que_tag; 
+    // option_list.innerHTML = option_tag2; 
+    
+    // const option = option_list.querySelectorAll(".option");
 
     
     for(i=0; i < option.length; i++){
+        //console.log(option[i])
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
 }
@@ -87,9 +102,10 @@ function showQuestions(index){
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
-n
+
 function optionSelected(answer){
     let userAns = answer.textContent; 
+    console.log(userAns)
     let correcAns = questions[que_count].answer; 
     const allOptions = option_list.children.length; 
     
@@ -97,18 +113,18 @@ function optionSelected(answer){
         userScore += 1; 1
         answer.classList.add("correct"); 
         answer.insertAdjacentHTML("beforeend", tickIconTag); 
-        console.log("Correct Answer");
-        console.log("Your correct answers = " + userScore);
+        // console.log("Correct Answer");
+        // console.log("Your correct answers = " + userScore);
     }else{
         answer.classList.add("incorrect"); 
         answer.insertAdjacentHTML("beforeend", crossIconTag); 
-        console.log("Wrong Answer");
+        // console.log("Wrong Answer");
 
         for(i=0; i < allOptions; i++){
             if(option_list.children[i].textContent == correcAns){  
                 option_list.children[i].setAttribute("class", "option correct"); 
                 option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
-                console.log("Auto selected correct answer.");
+                // console.log("Auto selected correct answer.");
             }
         }
     }
